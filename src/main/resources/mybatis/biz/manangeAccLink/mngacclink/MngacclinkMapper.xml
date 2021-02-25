@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinare.common_data.biz.manangeAccLink.dao.MngacclinkDao">
+
+	<select id="get" resultType="com.chinare.common_data.biz.manangeAccLink.domain.MngacclinkDO">
+		select `mngaccno`,`mngtype`,`mngcode`,`mngname`,`accountkind`,`accbankname`,`accno`,`accname`,`remark`,`managecom`,`operatecom`,`operator`,`makedate`,`maketime`,`modifyoperator`,`modifydate`,`modifytime`,`custodiancode`,`custodianname`,`mngaccstatue`,`collectchangeacc` from mngacclink where mngaccno = #{value}
+	</select>
+
+	<select id="list" resultType="com.chinare.common_data.biz.manangeAccLink.domain.MngacclinkDO">
+		select `mngaccno`,`mngtype`,`mngcode`,`mngname`,`accountkind`,`accbankname`,`accno`,`accname`,`remark`,`managecom`,`operatecom`,`operator`,`makedate`,`maketime`,`modifyoperator`,`modifydate`,`modifytime`,`custodiancode`,`custodianname`,`mngaccstatue`,`collectchangeacc` from mngacclink
+        <where>  
+		  		  <if test="mngaccno != null and mngaccno != ''"> and mngaccno = #{mngaccno} </if>
+		  		  <if test="mngtype != null and mngtype != ''"> and mngtype = #{mngtype} </if>
+		  		  <if test="mngcode != null and mngcode != ''"> and mngcode = #{mngcode} </if>
+		  		  <if test="mngname != null and mngname != ''"> and mngname = #{mngname} </if>
+		  		  <if test="accountkind != null and accountkind != ''"> and accountkind = #{accountkind} </if>
+		  		  <if test="accbankname != null and accbankname != ''"> and accbankname = #{accbankname} </if>
+		  		  <if test="accno != null and accno != ''"> and accno = #{accno} </if>
+		  		  <if test="accname != null and accname != ''"> and accname = #{accname} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="managecom != null and managecom != ''"> and managecom = #{managecom} </if>
+		  		  <if test="operatecom != null and operatecom != ''"> and operatecom = #{operatecom} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		  <if test="makedate != null and makedate != ''"> and makedate = #{makedate} </if>
+		  		  <if test="maketime != null and maketime != ''"> and maketime = #{maketime} </if>
+		  		  <if test="modifyoperator != null and modifyoperator != ''"> and modifyoperator = #{modifyoperator} </if>
+		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="modifytime != null and modifytime != ''"> and modifytime = #{modifytime} </if>
+		  		  <if test="custodiancode != null and custodiancode != ''"> and custodiancode = #{custodiancode} </if>
+		  		  <if test="custodianname != null and custodianname != ''"> and custodianname = #{custodianname} </if>
+		  		  <if test="mngaccstatue != null and mngaccstatue != ''"> and mngaccstatue = #{mngaccstatue} </if>
+		  		  <if test="collectchangeacc != null and collectchangeacc != ''"> and collectchangeacc = #{collectchangeacc} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by mngaccno desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from mngacclink
+		 <where>  
+		  		  <if test="mngaccno != null and mngaccno != ''"> and mngaccno = #{mngaccno} </if>
+		  		  <if test="mngtype != null and mngtype != ''"> and mngtype = #{mngtype} </if>
+		  		  <if test="mngcode != null and mngcode != ''"> and mngcode = #{mngcode} </if>
+		  		  <if test="mngname != null and mngname != ''"> and mngname = #{mngname} </if>
+		  		  <if test="accountkind != null and accountkind != ''"> and accountkind = #{accountkind} </if>
+		  		  <if test="accbankname != null and accbankname != ''"> and accbankname = #{accbankname} </if>
+		  		  <if test="accno != null and accno != ''"> and accno = #{accno} </if>
+		  		  <if test="accname != null and accname != ''"> and accname = #{accname} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="managecom != null and managecom != ''"> and managecom = #{managecom} </if>
+		  		  <if test="operatecom != null and operatecom != ''"> and operatecom = #{operatecom} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		  <if test="makedate != null and makedate != ''"> and makedate = #{makedate} </if>
+		  		  <if test="maketime != null and maketime != ''"> and maketime = #{maketime} </if>
+		  		  <if test="modifyoperator != null and modifyoperator != ''"> and modifyoperator = #{modifyoperator} </if>
+		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="modifytime != null and modifytime != ''"> and modifytime = #{modifytime} </if>
+		  		  <if test="custodiancode != null and custodiancode != ''"> and custodiancode = #{custodiancode} </if>
+		  		  <if test="custodianname != null and custodianname != ''"> and custodianname = #{custodianname} </if>
+		  		  <if test="mngaccstatue != null and mngaccstatue != ''"> and mngaccstatue = #{mngaccstatue} </if>
+		  		  <if test="collectchangeacc != null and collectchangeacc != ''"> and collectchangeacc = #{collectchangeacc} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.chinare.common_data.biz.manangeAccLink.domain.MngacclinkDO">
+		insert into mngacclink
+		(
+			`mngaccno`, 
+			`mngtype`, 
+			`mngcode`, 
+			`mngname`, 
+			`accountkind`, 
+			`accbankname`, 
+			`accno`, 
+			`accname`, 
+			`remark`, 
+			`managecom`, 
+			`operatecom`, 
+			`operator`, 
+			`makedate`, 
+			`maketime`, 
+			`modifyoperator`, 
+			`modifydate`, 
+			`modifytime`, 
+			`custodiancode`, 
+			`custodianname`, 
+			`mngaccstatue`, 
+			`collectchangeacc`
+		)
+		values
+		(
+			#{mngaccno}, 
+			#{mngtype}, 
+			#{mngcode}, 
+			#{mngname}, 
+			#{accountkind}, 
+			#{accbankname}, 
+			#{accno}, 
+			#{accname}, 
+			#{remark}, 
+			#{managecom}, 
+			#{operatecom}, 
+			#{operator}, 
+			#{makedate}, 
+			#{maketime}, 
+			#{modifyoperator}, 
+			#{modifydate}, 
+			#{modifytime}, 
+			#{custodiancode}, 
+			#{custodianname}, 
+			#{mngaccstatue}, 
+			#{collectchangeacc}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.chinare.common_data.biz.manangeAccLink.domain.MngacclinkDO">
+		update mngacclink 
+		<set>
+			<if test="mngtype != null">`mngtype` = #{mngtype}, </if>
+			<if test="mngcode != null">`mngcode` = #{mngcode}, </if>
+			<if test="mngname != null">`mngname` = #{mngname}, </if>
+			<if test="accountkind != null">`accountkind` = #{accountkind}, </if>
+			<if test="accbankname != null">`accbankname` = #{accbankname}, </if>
+			<if test="accno != null">`accno` = #{accno}, </if>
+			<if test="accname != null">`accname` = #{accname}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="managecom != null">`managecom` = #{managecom}, </if>
+			<if test="operatecom != null">`operatecom` = #{operatecom}, </if>
+			<if test="operator != null">`operator` = #{operator}, </if>
+			<if test="makedate != null">`makedate` = #{makedate}, </if>
+			<if test="maketime != null">`maketime` = #{maketime}, </if>
+			<if test="modifyoperator != null">`modifyoperator` = #{modifyoperator}, </if>
+			<if test="modifydate != null">`modifydate` = #{modifydate}, </if>
+			<if test="modifytime != null">`modifytime` = #{modifytime}, </if>
+			<if test="custodiancode != null">`custodiancode` = #{custodiancode}, </if>
+			<if test="custodianname != null">`custodianname` = #{custodianname}, </if>
+			<if test="mngaccstatue != null">`mngaccstatue` = #{mngaccstatue}, </if>
+			<if test="collectchangeacc != null">`collectchangeacc` = #{collectchangeacc}</if>
+		</set>
+		where mngaccno = #{mngaccno}
+	</update>
+	
+	<delete id="remove">
+		delete from mngacclink where mngaccno = #{mngaccno}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from mngacclink where mngaccno in 
+		<foreach item="mngaccno" collection="array" open="(" separator="," close=")">
+			#{mngaccno}
+		</foreach>
+	</delete>
+
+</mapper>

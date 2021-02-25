@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinare.common_data.biz.manager.dao.AccmanagerDao">
+
+	<select id="get" resultType="com.chinare.common_data.biz.manager.domain.AccmanagerDO">
+		select `AccMngCode`,`AccMngName`,`ShortName`,`CertificateNo`,`Corporation`,`RgtMoney`,`RgtAddress`,`AICRegistration`,`GrpNature`,`GrpType`,`ValidStartDate`,`ValidExpDate`,`GrpAddress`,`ZipCode`,`Phone`,`GrpUrl`,`Currency`,`UpMngCode`,`TopMngCode`,`ChildFlag`,`Remark`,`Status`,`ManageCom`,`OperateCom`,`Operator`,`MakeDate`,`MakeTime`,`ModifyOperator`,`ModifyDate`,`ModifyTime`,`CIFID`,`AccMngID` from accmanager where AccMngCode = #{value}
+	</select>
+
+	<select id="list" resultType="com.chinare.common_data.biz.manager.domain.AccmanagerDO">
+		select `AccMngCode`,`AccMngName`,`ShortName`,`CertificateNo`,`Corporation`,`RgtMoney`,`RgtAddress`,`AICRegistration`,`GrpNature`,`GrpType`,`ValidStartDate`,`ValidExpDate`,`GrpAddress`,`ZipCode`,`Phone`,`GrpUrl`,`Currency`,`UpMngCode`,`TopMngCode`,`ChildFlag`,`Remark`,`Status`,`ManageCom`,`OperateCom`,`Operator`,`MakeDate`,`MakeTime`,`ModifyOperator`,`ModifyDate`,`ModifyTime`,`CIFID`,`AccMngID` from accmanager
+        <where>  
+		  		  <if test="accmngcode != null and accmngcode != ''"> and AccMngCode = #{accmngcode} </if>
+		  		  <if test="accmngname != null and accmngname != ''"> and AccMngName = #{accmngname} </if>
+		  		  <if test="shortname != null and shortname != ''"> and ShortName = #{shortname} </if>
+		  		  <if test="certificateno != null and certificateno != ''"> and CertificateNo = #{certificateno} </if>
+		  		  <if test="corporation != null and corporation != ''"> and Corporation = #{corporation} </if>
+		  		  <if test="rgtmoney != null and rgtmoney != ''"> and RgtMoney = #{rgtmoney} </if>
+		  		  <if test="rgtaddress != null and rgtaddress != ''"> and RgtAddress = #{rgtaddress} </if>
+		  		  <if test="aicregistration != null and aicregistration != ''"> and AICRegistration = #{aicregistration} </if>
+		  		  <if test="grpnature != null and grpnature != ''"> and GrpNature = #{grpnature} </if>
+		  		  <if test="grptype != null and grptype != ''"> and GrpType = #{grptype} </if>
+		  		  <if test="validstartdate != null and validstartdate != ''"> and ValidStartDate = #{validstartdate} </if>
+		  		  <if test="validexpdate != null and validexpdate != ''"> and ValidExpDate = #{validexpdate} </if>
+		  		  <if test="grpaddress != null and grpaddress != ''"> and GrpAddress = #{grpaddress} </if>
+		  		  <if test="zipcode != null and zipcode != ''"> and ZipCode = #{zipcode} </if>
+		  		  <if test="phone != null and phone != ''"> and Phone = #{phone} </if>
+		  		  <if test="grpurl != null and grpurl != ''"> and GrpUrl = #{grpurl} </if>
+		  		  <if test="currency != null and currency != ''"> and Currency = #{currency} </if>
+		  		  <if test="upmngcode != null and upmngcode != ''"> and UpMngCode = #{upmngcode} </if>
+		  		  <if test="topmngcode != null and topmngcode != ''"> and TopMngCode = #{topmngcode} </if>
+		  		  <if test="childflag != null and childflag != ''"> and ChildFlag = #{childflag} </if>
+		  		  <if test="remark != null and remark != ''"> and Remark = #{remark} </if>
+		  		  <if test="status != null and status != ''"> and Status = #{status} </if>
+		  		  <if test="managecom != null and managecom != ''"> and ManageCom = #{managecom} </if>
+		  		  <if test="operatecom != null and operatecom != ''"> and OperateCom = #{operatecom} </if>
+		  		  <if test="operator != null and operator != ''"> and Operator = #{operator} </if>
+		  		  <if test="makedate != null and makedate != ''"> and MakeDate = #{makedate} </if>
+		  		  <if test="maketime != null and maketime != ''"> and MakeTime = #{maketime} </if>
+		  		  <if test="modifyoperator != null and modifyoperator != ''"> and ModifyOperator = #{modifyoperator} </if>
+		  		  <if test="modifydate != null and modifydate != ''"> and ModifyDate = #{modifydate} </if>
+		  		  <if test="modifytime != null and modifytime != ''"> and ModifyTime = #{modifytime} </if>
+		  		  <if test="cifid != null and cifid != ''"> and CIFID = #{cifid} </if>
+		  		  <if test="accmngid != null and accmngid != ''"> and AccMngID = #{accmngid} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by AccMngCode desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from accmanager
+		 <where>  
+		  		  <if test="accmngcode != null and accmngcode != ''"> and AccMngCode = #{accmngcode} </if>
+		  		  <if test="accmngname != null and accmngname != ''"> and AccMngName = #{accmngname} </if>
+		  		  <if test="shortname != null and shortname != ''"> and ShortName = #{shortname} </if>
+		  		  <if test="certificateno != null and certificateno != ''"> and CertificateNo = #{certificateno} </if>
+		  		  <if test="corporation != null and corporation != ''"> and Corporation = #{corporation} </if>
+		  		  <if test="rgtmoney != null and rgtmoney != ''"> and RgtMoney = #{rgtmoney} </if>
+		  		  <if test="rgtaddress != null and rgtaddress != ''"> and RgtAddress = #{rgtaddress} </if>
+		  		  <if test="aicregistration != null and aicregistration != ''"> and AICRegistration = #{aicregistration} </if>
+		  		  <if test="grpnature != null and grpnature != ''"> and GrpNature = #{grpnature} </if>
+		  		  <if test="grptype != null and grptype != ''"> and GrpType = #{grptype} </if>
+		  		  <if test="validstartdate != null and validstartdate != ''"> and ValidStartDate = #{validstartdate} </if>
+		  		  <if test="validexpdate != null and validexpdate != ''"> and ValidExpDate = #{validexpdate} </if>
+		  		  <if test="grpaddress != null and grpaddress != ''"> and GrpAddress = #{grpaddress} </if>
+		  		  <if test="zipcode != null and zipcode != ''"> and ZipCode = #{zipcode} </if>
+		  		  <if test="phone != null and phone != ''"> and Phone = #{phone} </if>
+		  		  <if test="grpurl != null and grpurl != ''"> and GrpUrl = #{grpurl} </if>
+		  		  <if test="currency != null and currency != ''"> and Currency = #{currency} </if>
+		  		  <if test="upmngcode != null and upmngcode != ''"> and UpMngCode = #{upmngcode} </if>
+		  		  <if test="topmngcode != null and topmngcode != ''"> and TopMngCode = #{topmngcode} </if>
+		  		  <if test="childflag != null and childflag != ''"> and ChildFlag = #{childflag} </if>
+		  		  <if test="remark != null and remark != ''"> and Remark = #{remark} </if>
+		  		  <if test="status != null and status != ''"> and Status = #{status} </if>
+		  		  <if test="managecom != null and managecom != ''"> and ManageCom = #{managecom} </if>
+		  		  <if test="operatecom != null and operatecom != ''"> and OperateCom = #{operatecom} </if>
+		  		  <if test="operator != null and operator != ''"> and Operator = #{operator} </if>
+		  		  <if test="makedate != null and makedate != ''"> and MakeDate = #{makedate} </if>
+		  		  <if test="maketime != null and maketime != ''"> and MakeTime = #{maketime} </if>
+		  		  <if test="modifyoperator != null and modifyoperator != ''"> and ModifyOperator = #{modifyoperator} </if>
+		  		  <if test="modifydate != null and modifydate != ''"> and ModifyDate = #{modifydate} </if>
+		  		  <if test="modifytime != null and modifytime != ''"> and ModifyTime = #{modifytime} </if>
+		  		  <if test="cifid != null and cifid != ''"> and CIFID = #{cifid} </if>
+		  		  <if test="accmngid != null and accmngid != ''"> and AccMngID = #{accmngid} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.chinare.common_data.biz.manager.domain.AccmanagerDO">
+		insert into accmanager
+		(
+			`AccMngCode`, 
+			`AccMngName`, 
+			`ShortName`, 
+			`CertificateNo`, 
+			`Corporation`, 
+			`RgtMoney`, 
+			`RgtAddress`, 
+			`AICRegistration`, 
+			`GrpNature`, 
+			`GrpType`, 
+			`ValidStartDate`, 
+			`ValidExpDate`, 
+			`GrpAddress`, 
+			`ZipCode`, 
+			`Phone`, 
+			`GrpUrl`, 
+			`Currency`, 
+			`UpMngCode`, 
+			`TopMngCode`, 
+			`ChildFlag`, 
+			`Remark`, 
+			`Status`, 
+			`ManageCom`, 
+			`OperateCom`, 
+			`Operator`, 
+			`MakeDate`, 
+			`MakeTime`, 
+			`ModifyOperator`, 
+			`ModifyDate`, 
+			`ModifyTime`, 
+			`CIFID`, 
+			`AccMngID`
+		)
+		values
+		(
+			#{accmngcode}, 
+			#{accmngname}, 
+			#{shortname}, 
+			#{certificateno}, 
+			#{corporation}, 
+			#{rgtmoney}, 
+			#{rgtaddress}, 
+			#{aicregistration}, 
+			#{grpnature}, 
+			#{grptype}, 
+			#{validstartdate}, 
+			#{validexpdate}, 
+			#{grpaddress}, 
+			#{zipcode}, 
+			#{phone}, 
+			#{grpurl}, 
+			#{currency}, 
+			#{upmngcode}, 
+			#{topmngcode}, 
+			#{childflag}, 
+			#{remark}, 
+			#{status}, 
+			#{managecom}, 
+			#{operatecom}, 
+			#{operator}, 
+			#{makedate}, 
+			#{maketime}, 
+			#{modifyoperator}, 
+			#{modifydate}, 
+			#{modifytime}, 
+			#{cifid}, 
+			#{accmngid}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.chinare.common_data.biz.manager.domain.AccmanagerDO">
+		update accmanager 
+		<set>
+			<if test="accmngname != null">`AccMngName` = #{accmngname}, </if>
+			<if test="shortname != null">`ShortName` = #{shortname}, </if>
+			<if test="certificateno != null">`CertificateNo` = #{certificateno}, </if>
+			<if test="corporation != null">`Corporation` = #{corporation}, </if>
+			<if test="rgtmoney != null">`RgtMoney` = #{rgtmoney}, </if>
+			<if test="rgtaddress != null">`RgtAddress` = #{rgtaddress}, </if>
+			<if test="aicregistration != null">`AICRegistration` = #{aicregistration}, </if>
+			<if test="grpnature != null">`GrpNature` = #{grpnature}, </if>
+			<if test="grptype != null">`GrpType` = #{grptype}, </if>
+			<if test="validstartdate != null">`ValidStartDate` = #{validstartdate}, </if>
+			<if test="validexpdate != null">`ValidExpDate` = #{validexpdate}, </if>
+			<if test="grpaddress != null">`GrpAddress` = #{grpaddress}, </if>
+			<if test="zipcode != null">`ZipCode` = #{zipcode}, </if>
+			<if test="phone != null">`Phone` = #{phone}, </if>
+			<if test="grpurl != null">`GrpUrl` = #{grpurl}, </if>
+			<if test="currency != null">`Currency` = #{currency}, </if>
+			<if test="upmngcode != null">`UpMngCode` = #{upmngcode}, </if>
+			<if test="topmngcode != null">`TopMngCode` = #{topmngcode}, </if>
+			<if test="childflag != null">`ChildFlag` = #{childflag}, </if>
+			<if test="remark != null">`Remark` = #{remark}, </if>
+			<if test="status != null">`Status` = #{status}, </if>
+			<if test="managecom != null">`ManageCom` = #{managecom}, </if>
+			<if test="operatecom != null">`OperateCom` = #{operatecom}, </if>
+			<if test="operator != null">`Operator` = #{operator}, </if>
+			<if test="makedate != null">`MakeDate` = #{makedate}, </if>
+			<if test="maketime != null">`MakeTime` = #{maketime}, </if>
+			<if test="modifyoperator != null">`ModifyOperator` = #{modifyoperator}, </if>
+			<if test="modifydate != null">`ModifyDate` = #{modifydate}, </if>
+			<if test="modifytime != null">`ModifyTime` = #{modifytime}, </if>
+			<if test="cifid != null">`CIFID` = #{cifid}, </if>
+			<if test="accmngid != null">`AccMngID` = #{accmngid}</if>
+		</set>
+		where AccMngCode = #{accmngcode}
+	</update>
+	
+	<delete id="remove">
+		delete from accmanager where AccMngCode = #{accmngcode}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from accmanager where AccMngCode in 
+		<foreach item="accmngcode" collection="array" open="(" separator="," close=")">
+			#{accmngcode}
+		</foreach>
+	</delete>
+
+</mapper>

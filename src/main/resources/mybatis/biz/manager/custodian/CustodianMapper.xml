@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinare.common_data.biz.manager.dao.CustodianDao">
+
+	<select id="get" resultType="com.chinare.common_data.biz.manager.domain.CustodianDO">
+		select `custodiancode`,`custodianname`,`shortname`,`certificateno`,`corporation`,`rgtmoney`,`rgtaddress`,`aicregistration`,`grpnature`,`grptype`,`validstartdate`,`validexpdate`,`grpaddress`,`zipcode`,`phone`,`grpurl`,`currency`,`upmngcode`,`topmngcode`,`childflag`,`bankidentity`,`status`,`remark`,`managecom`,`operatecom`,`operator`,`makedate`,`maketime`,`modifyoperator`,`modifydate`,`modifytime`,`cifid`,`custodianid`,`payconfirm` from custodian where custodiancode = #{value}
+	</select>
+
+	<select id="list" resultType="com.chinare.common_data.biz.manager.domain.CustodianDO">
+		select `custodiancode`,`custodianname`,`shortname`,`certificateno`,`corporation`,`rgtmoney`,`rgtaddress`,`aicregistration`,`grpnature`,`grptype`,`validstartdate`,`validexpdate`,`grpaddress`,`zipcode`,`phone`,`grpurl`,`currency`,`upmngcode`,`topmngcode`,`childflag`,`bankidentity`,`status`,`remark`,`managecom`,`operatecom`,`operator`,`makedate`,`maketime`,`modifyoperator`,`modifydate`,`modifytime`,`cifid`,`custodianid`,`payconfirm` from custodian
+        <where>  
+		  		  <if test="custodiancode != null and custodiancode != ''"> and custodiancode = #{custodiancode} </if>
+		  		  <if test="custodianname != null and custodianname != ''"> and custodianname = #{custodianname} </if>
+		  		  <if test="shortname != null and shortname != ''"> and shortname = #{shortname} </if>
+		  		  <if test="certificateno != null and certificateno != ''"> and certificateno = #{certificateno} </if>
+		  		  <if test="corporation != null and corporation != ''"> and corporation = #{corporation} </if>
+		  		  <if test="rgtmoney != null and rgtmoney != ''"> and rgtmoney = #{rgtmoney} </if>
+		  		  <if test="rgtaddress != null and rgtaddress != ''"> and rgtaddress = #{rgtaddress} </if>
+		  		  <if test="aicregistration != null and aicregistration != ''"> and aicregistration = #{aicregistration} </if>
+		  		  <if test="grpnature != null and grpnature != ''"> and grpnature = #{grpnature} </if>
+		  		  <if test="grptype != null and grptype != ''"> and grptype = #{grptype} </if>
+		  		  <if test="validstartdate != null and validstartdate != ''"> and validstartdate = #{validstartdate} </if>
+		  		  <if test="validexpdate != null and validexpdate != ''"> and validexpdate = #{validexpdate} </if>
+		  		  <if test="grpaddress != null and grpaddress != ''"> and grpaddress = #{grpaddress} </if>
+		  		  <if test="zipcode != null and zipcode != ''"> and zipcode = #{zipcode} </if>
+		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
+		  		  <if test="grpurl != null and grpurl != ''"> and grpurl = #{grpurl} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="upmngcode != null and upmngcode != ''"> and upmngcode = #{upmngcode} </if>
+		  		  <if test="topmngcode != null and topmngcode != ''"> and topmngcode = #{topmngcode} </if>
+		  		  <if test="childflag != null and childflag != ''"> and childflag = #{childflag} </if>
+		  		  <if test="bankidentity != null and bankidentity != ''"> and bankidentity = #{bankidentity} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="managecom != null and managecom != ''"> and managecom = #{managecom} </if>
+		  		  <if test="operatecom != null and operatecom != ''"> and operatecom = #{operatecom} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		  <if test="makedate != null and makedate != ''"> and makedate = #{makedate} </if>
+		  		  <if test="maketime != null and maketime != ''"> and maketime = #{maketime} </if>
+		  		  <if test="modifyoperator != null and modifyoperator != ''"> and modifyoperator = #{modifyoperator} </if>
+		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="modifytime != null and modifytime != ''"> and modifytime = #{modifytime} </if>
+		  		  <if test="cifid != null and cifid != ''"> and cifid = #{cifid} </if>
+		  		  <if test="custodianid != null and custodianid != ''"> and custodianid = #{custodianid} </if>
+		  		  <if test="payconfirm != null and payconfirm != ''"> and payconfirm = #{payconfirm} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by custodiancode desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from custodian
+		 <where>  
+		  		  <if test="custodiancode != null and custodiancode != ''"> and custodiancode = #{custodiancode} </if>
+		  		  <if test="custodianname != null and custodianname != ''"> and custodianname = #{custodianname} </if>
+		  		  <if test="shortname != null and shortname != ''"> and shortname = #{shortname} </if>
+		  		  <if test="certificateno != null and certificateno != ''"> and certificateno = #{certificateno} </if>
+		  		  <if test="corporation != null and corporation != ''"> and corporation = #{corporation} </if>
+		  		  <if test="rgtmoney != null and rgtmoney != ''"> and rgtmoney = #{rgtmoney} </if>
+		  		  <if test="rgtaddress != null and rgtaddress != ''"> and rgtaddress = #{rgtaddress} </if>
+		  		  <if test="aicregistration != null and aicregistration != ''"> and aicregistration = #{aicregistration} </if>
+		  		  <if test="grpnature != null and grpnature != ''"> and grpnature = #{grpnature} </if>
+		  		  <if test="grptype != null and grptype != ''"> and grptype = #{grptype} </if>
+		  		  <if test="validstartdate != null and validstartdate != ''"> and validstartdate = #{validstartdate} </if>
+		  		  <if test="validexpdate != null and validexpdate != ''"> and validexpdate = #{validexpdate} </if>
+		  		  <if test="grpaddress != null and grpaddress != ''"> and grpaddress = #{grpaddress} </if>
+		  		  <if test="zipcode != null and zipcode != ''"> and zipcode = #{zipcode} </if>
+		  		  <if test="phone != null and phone != ''"> and phone = #{phone} </if>
+		  		  <if test="grpurl != null and grpurl != ''"> and grpurl = #{grpurl} </if>
+		  		  <if test="currency != null and currency != ''"> and currency = #{currency} </if>
+		  		  <if test="upmngcode != null and upmngcode != ''"> and upmngcode = #{upmngcode} </if>
+		  		  <if test="topmngcode != null and topmngcode != ''"> and topmngcode = #{topmngcode} </if>
+		  		  <if test="childflag != null and childflag != ''"> and childflag = #{childflag} </if>
+		  		  <if test="bankidentity != null and bankidentity != ''"> and bankidentity = #{bankidentity} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="remark != null and remark != ''"> and remark = #{remark} </if>
+		  		  <if test="managecom != null and managecom != ''"> and managecom = #{managecom} </if>
+		  		  <if test="operatecom != null and operatecom != ''"> and operatecom = #{operatecom} </if>
+		  		  <if test="operator != null and operator != ''"> and operator = #{operator} </if>
+		  		  <if test="makedate != null and makedate != ''"> and makedate = #{makedate} </if>
+		  		  <if test="maketime != null and maketime != ''"> and maketime = #{maketime} </if>
+		  		  <if test="modifyoperator != null and modifyoperator != ''"> and modifyoperator = #{modifyoperator} </if>
+		  		  <if test="modifydate != null and modifydate != ''"> and modifydate = #{modifydate} </if>
+		  		  <if test="modifytime != null and modifytime != ''"> and modifytime = #{modifytime} </if>
+		  		  <if test="cifid != null and cifid != ''"> and cifid = #{cifid} </if>
+		  		  <if test="custodianid != null and custodianid != ''"> and custodianid = #{custodianid} </if>
+		  		  <if test="payconfirm != null and payconfirm != ''"> and payconfirm = #{payconfirm} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.chinare.common_data.biz.manager.domain.CustodianDO">
+		insert into custodian
+		(
+			`custodiancode`, 
+			`custodianname`, 
+			`shortname`, 
+			`certificateno`, 
+			`corporation`, 
+			`rgtmoney`, 
+			`rgtaddress`, 
+			`aicregistration`, 
+			`grpnature`, 
+			`grptype`, 
+			`validstartdate`, 
+			`validexpdate`, 
+			`grpaddress`, 
+			`zipcode`, 
+			`phone`, 
+			`grpurl`, 
+			`currency`, 
+			`upmngcode`, 
+			`topmngcode`, 
+			`childflag`, 
+			`bankidentity`, 
+			`status`, 
+			`remark`, 
+			`managecom`, 
+			`operatecom`, 
+			`operator`, 
+			`makedate`, 
+			`maketime`, 
+			`modifyoperator`, 
+			`modifydate`, 
+			`modifytime`, 
+			`cifid`, 
+			`custodianid`, 
+			`payconfirm`
+		)
+		values
+		(
+			#{custodiancode}, 
+			#{custodianname}, 
+			#{shortname}, 
+			#{certificateno}, 
+			#{corporation}, 
+			#{rgtmoney}, 
+			#{rgtaddress}, 
+			#{aicregistration}, 
+			#{grpnature}, 
+			#{grptype}, 
+			#{validstartdate}, 
+			#{validexpdate}, 
+			#{grpaddress}, 
+			#{zipcode}, 
+			#{phone}, 
+			#{grpurl}, 
+			#{currency}, 
+			#{upmngcode}, 
+			#{topmngcode}, 
+			#{childflag}, 
+			#{bankidentity}, 
+			#{status}, 
+			#{remark}, 
+			#{managecom}, 
+			#{operatecom}, 
+			#{operator}, 
+			#{makedate}, 
+			#{maketime}, 
+			#{modifyoperator}, 
+			#{modifydate}, 
+			#{modifytime}, 
+			#{cifid}, 
+			#{custodianid}, 
+			#{payconfirm}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.chinare.common_data.biz.manager.domain.CustodianDO">
+		update custodian 
+		<set>
+			<if test="custodianname != null">`custodianname` = #{custodianname}, </if>
+			<if test="shortname != null">`shortname` = #{shortname}, </if>
+			<if test="certificateno != null">`certificateno` = #{certificateno}, </if>
+			<if test="corporation != null">`corporation` = #{corporation}, </if>
+			<if test="rgtmoney != null">`rgtmoney` = #{rgtmoney}, </if>
+			<if test="rgtaddress != null">`rgtaddress` = #{rgtaddress}, </if>
+			<if test="aicregistration != null">`aicregistration` = #{aicregistration}, </if>
+			<if test="grpnature != null">`grpnature` = #{grpnature}, </if>
+			<if test="grptype != null">`grptype` = #{grptype}, </if>
+			<if test="validstartdate != null">`validstartdate` = #{validstartdate}, </if>
+			<if test="validexpdate != null">`validexpdate` = #{validexpdate}, </if>
+			<if test="grpaddress != null">`grpaddress` = #{grpaddress}, </if>
+			<if test="zipcode != null">`zipcode` = #{zipcode}, </if>
+			<if test="phone != null">`phone` = #{phone}, </if>
+			<if test="grpurl != null">`grpurl` = #{grpurl}, </if>
+			<if test="currency != null">`currency` = #{currency}, </if>
+			<if test="upmngcode != null">`upmngcode` = #{upmngcode}, </if>
+			<if test="topmngcode != null">`topmngcode` = #{topmngcode}, </if>
+			<if test="childflag != null">`childflag` = #{childflag}, </if>
+			<if test="bankidentity != null">`bankidentity` = #{bankidentity}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="managecom != null">`managecom` = #{managecom}, </if>
+			<if test="operatecom != null">`operatecom` = #{operatecom}, </if>
+			<if test="operator != null">`operator` = #{operator}, </if>
+			<if test="makedate != null">`makedate` = #{makedate}, </if>
+			<if test="maketime != null">`maketime` = #{maketime}, </if>
+			<if test="modifyoperator != null">`modifyoperator` = #{modifyoperator}, </if>
+			<if test="modifydate != null">`modifydate` = #{modifydate}, </if>
+			<if test="modifytime != null">`modifytime` = #{modifytime}, </if>
+			<if test="cifid != null">`cifid` = #{cifid}, </if>
+			<if test="custodianid != null">`custodianid` = #{custodianid}, </if>
+			<if test="payconfirm != null">`payconfirm` = #{payconfirm}</if>
+		</set>
+		where custodiancode = #{custodiancode}
+	</update>
+	
+	<delete id="remove">
+		delete from custodian where custodiancode = #{custodiancode}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from custodian where custodiancode in 
+		<foreach item="custodiancode" collection="array" open="(" separator="," close=")">
+			#{custodiancode}
+		</foreach>
+	</delete>
+
+</mapper>
